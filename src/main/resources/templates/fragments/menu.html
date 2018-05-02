@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div id="menu" class="menu" th:fragment="menu">
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" th:href="@{/}">Spring Static Site Generator</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li>item</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!--<div id="logo" class="logo">-->
+    <!--<img src="../static/images/10bitworkslogo.png" width="255"-->
+    <!--th:src="@{images/10bitworkslogo.png}"/>-->
+    <!--</div>-->
+    <!--<div><H1>MAKER TRACKER</H1></div>-->
+</div>
+</html>
