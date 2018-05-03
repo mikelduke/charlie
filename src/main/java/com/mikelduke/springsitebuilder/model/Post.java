@@ -4,6 +4,8 @@ package com.mikelduke.springsitebuilder.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -38,7 +40,7 @@ public class Post {
 
 	private long createdAtMs;
 
-	// @ManyToOne
-	// private Collection<Post> post;
-
+	@ManyToOne
+	@JoinColumn(name="page_id")
+	private Page page;
 }

@@ -1,9 +1,12 @@
 package com.mikelduke.springsitebuilder.model;
 
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -36,7 +39,7 @@ public class Page {
 
 	private String desc;
 
-	// @ManyToOne
-	// private Collection<Post> post;
+	@OneToMany(mappedBy="id")
+	private Collection<Post> posts;
 
 }
