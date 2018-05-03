@@ -4,8 +4,10 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mikelduke.springsitebuilder.model.MenuItem;
 import com.mikelduke.springsitebuilder.model.Page;
 import com.mikelduke.springsitebuilder.model.Post;
+import com.mikelduke.springsitebuilder.repositories.MenuItemRepository;
 import com.mikelduke.springsitebuilder.repositories.PageRepository;
 import com.mikelduke.springsitebuilder.repositories.PostRepository;
 
@@ -27,6 +29,9 @@ public class TestDataGenerator {
 
 	@Autowired
 	PostRepository postRepo;
+
+	@Autowired
+	MenuItemRepository menuRepo;
 	
 	@Bean
 	@Order(1)
@@ -49,9 +54,19 @@ public class TestDataGenerator {
 						.name("page 1 name")
 						.shortName("p1")
 						.posts(posts)
+						.showInMenu(true)
+						.menuPosition(0)
 						.build();
 				
 				pageRepo.save(page);
+
+				MenuItem menuItem = MenuItem.builder()
+						.text("google")
+						.link("www.google.com")
+						.position(1)
+						.build();
+
+				menuRepo.save(menuItem);
 			}
 		};
 	}

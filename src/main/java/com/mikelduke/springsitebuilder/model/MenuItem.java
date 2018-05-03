@@ -1,12 +1,9 @@
 package com.mikelduke.springsitebuilder.model;
 
 
-import java.util.Collection;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -19,30 +16,24 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "pages")
+@Table(name = "menuitems")
 @Data
 @JsonInclude(Include.NON_NULL)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Page {
+public class MenuItem {
 
 	@Id
 	@GeneratedValue
-	private long id;
+    private long id;
+    
+    private int position;
 
 	@NotBlank
-	private String name;
+	private String text;
 
 	@NotBlank
-	private String shortName;
+	private String link;
 
-	private String desc;
-
-	@OneToMany(mappedBy="id")
-	private Collection<Post> posts;
-
-	private boolean showInMenu;
-
-	private int menuPosition;
 }

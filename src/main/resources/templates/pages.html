@@ -23,7 +23,7 @@
 							<td th:id="${page.id}"><a class="btn btn-danger delete-page">Delete</a></td>
 						</tr>
 						
-						<tr sec:authorize="hasRole('ROLE_ADMIN')">
+						<tr>
 							<td></td>
 							<td>
 								<a class="btn btn-primary new-page" th:href="@{~/pages(new=true)}">New</a>
