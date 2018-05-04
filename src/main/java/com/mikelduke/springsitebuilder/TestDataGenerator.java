@@ -54,19 +54,33 @@ public class TestDataGenerator {
 						.name("page 1 name")
 						.shortName("p1")
 						.posts(posts)
-						.showInMenu(true)
-						.menuPosition(0)
 						.build();
 				
 				pageRepo.save(page);
 
 				MenuItem menuItem = MenuItem.builder()
 						.text("google")
-						.link("www.google.com")
+						.target("www.google.com")
 						.position(1)
 						.build();
 
 				menuRepo.save(menuItem);
+
+				MenuItem menuItem2 = MenuItem.builder()
+						.text("slashdot")
+						.target("slashdot.org")
+						.position(2)
+						.build();
+
+				menuRepo.save(menuItem2);
+
+				MenuItem menuItem3 = MenuItem.builder()
+						.text(page.getName())
+						.target(page.getLink())
+						.position(3)
+						.build();
+
+				menuRepo.save(menuItem3);
 			}
 		};
 	}

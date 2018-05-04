@@ -34,6 +34,6 @@ public class MenuItem {
 	private String text;
 
 	@NotBlank
-	private String link;
+	private String target;
 
 }

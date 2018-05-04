@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -19,7 +20,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "pages")
+@Table(name = "pages", uniqueConstraints=
+	@UniqueConstraint(columnNames={"shortName"})
+)
 @Data
 @JsonInclude(Include.NON_NULL)
 @Builder
@@ -42,7 +45,7 @@ public class Page {
 	@OneToMany(mappedBy="id")
 	private Collection<Post> posts;
 
-	private boolean showInMenu;
-
-	private int menuPosition;
+	public String getLink() {
+		return "pages/" + shortName;
+	}
 }

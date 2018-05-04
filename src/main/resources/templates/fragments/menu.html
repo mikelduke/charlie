@@ -15,7 +15,7 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
                     <li th:each="menuItem: ${menuItems}" th:inline="text">
-                        <a th:href="${menuItem.link}">[[${menuItem.text}]]</a>
+                        <a th:href="${menuItem.target}">[[${menuItem.text}]]</a>
                     </li>
                 </ul>
             </div>
