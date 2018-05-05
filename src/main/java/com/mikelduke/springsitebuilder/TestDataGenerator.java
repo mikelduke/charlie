@@ -53,10 +53,11 @@ public class TestDataGenerator {
 						.desc("page 1 desc")
 						.name("page 1 name")
 						.shortName("p1")
-						.posts(posts)
 						.build();
 				
 				pageRepo.save(page);
+				post.setPage(page);
+				postRepo.save(post);
 
 				MenuItem menuItem = MenuItem.builder()
 						.text("google")

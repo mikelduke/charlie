@@ -27,8 +27,7 @@ public class RootController {
                 .orElse(
                     pageRepository.findAll(
                         PageRequest.of(0, 1, Sort.Direction.ASC, "id"))
-                        .getContent()
-                        .get(0));
+                        .stream().findFirst().orElse(null));
 		model.addAttribute("page", page);
 		
 		return "page";

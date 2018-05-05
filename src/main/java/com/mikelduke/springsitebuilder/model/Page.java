@@ -1,12 +1,9 @@
 package com.mikelduke.springsitebuilder.model;
 
 
-import java.util.Collection;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
@@ -41,9 +38,6 @@ public class Page {
 	private String shortName;
 
 	private String desc;
-
-	@OneToMany(mappedBy="id")
-	private Collection<Post> posts;
 
 	public String getLink() {
 		return "pages/" + shortName;

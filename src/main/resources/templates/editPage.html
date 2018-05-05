@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" lang="en"/>
+<body>
+<div id="mainContainer" class="flexBoxContainer">
+	<div th:replace="fragments/adminmenu :: adminmenu"></div>
+	<div th:replace="fragments/menu :: menu"></div>
+	<div class="container">
+		<div class="row">
+			<div class="row">
+				<div class="col-lg-8 col-md-7 col-sm-6">
+					<h1 th:text="${newPage == true ? 'New Page' : 'Edit Page'} "></h1>
+					<form id="form" th:action="@{/pages/}" method="post" th:object="${page}">
+						<div id="pageForm">
+							<div class="form-group" style="display:none">
+								<label for="id">Id:</label>
+								<input type="text" class="form-control" id="id" th:value="${page?.id}"/>
+							</div>
+							<div class="form-group">
+								<label for="name">Name:</label>
+								<input type="text" class="form-control" name="name" id="name" th:value="${page?.name}" />
+							</div>
+							<div class="form-group">
+								<label for="shortName">Short Name:</label>
+								<input type="text" class="form-control" name="shortName" id="shortName" th:value="${page?.shortName}" />
+							</div>
+							<div class="form-group">
+								<label for="desc">Description:</label>
+								<input type="text" class="form-control" name="desc" id="desc" th:value="${page?.shortName}" />
+							</div>
+						</div>
+						<button th:if="${page != null}" type="submit" class="btn btn-primary" id="btn_editPage">Update Page</button>
+                        <button th:if="${page == null}" type="submit" class="btn btn-primary" id="btn_editPage">Add Page</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+</div>
+<!-- <script th:src="@{~/script/member.js}" type="application/javascript"></script> -->
+
+</body>
+</html>
