@@ -15,11 +15,6 @@ public class PageController {
 	@Autowired
 	PageRepository pageRepository;
 
-	@GetMapping(value = "/")
-	public String getRoot() {
-		return "redirect:/pages";
-	}
-
 	@GetMapping(value = "/pages")
 	public String getPages(Model model) {
 		Iterable<Page> pages = pageRepository.findAll();
