@@ -40,6 +40,8 @@ dependencies {
 	
 	compile 'com.h2database:h2'
 	compile 'mysql:mysql-connector-java'
+
+	compile 'com.vladsch.flexmark:flexmark-all:0.32.22'
 	
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 

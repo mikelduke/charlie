@@ -70,6 +70,14 @@ public class TestDataGenerator {
 						.createdAtMs(Instant.now().toEpochMilli()).build();
 				postRepo.save(post3);
 
+				Post post4 = Post.builder()
+						.content("* test markdown\n* line two")
+						.shortName("post-4")
+						.title("markdown post content")
+						.page(page)
+						.createdAtMs(Instant.now().toEpochMilli()).build();
+				postRepo.save(post4);
+
 				MenuItem menuItem = MenuItem.builder()
 						.text("google")
 						.target("https://www.google.com")

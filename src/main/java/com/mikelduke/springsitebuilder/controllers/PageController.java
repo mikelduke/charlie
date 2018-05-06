@@ -37,6 +37,9 @@ public class PageController {
 	@Autowired
 	HttpServletResponse response;
 
+	@Autowired
+	MarkdownParseService mdParser;
+
 	@GetMapping(value = "/pages")
 	public String getPages(Model model,
 			@RequestParam(name="new", required=false, defaultValue="false") boolean newPage) {
@@ -63,6 +66,7 @@ public class PageController {
 
 		Iterable<Post> posts = postRepository.findAllByPage(page);
 		posts.forEach(p -> {
+			p.setContent(mdParser.render(p.getContent()));
 			p.setContent(templateEngine.process(p.getContent(), thContext));
 		});
 		model.addAttribute("posts", posts);
