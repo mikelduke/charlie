@@ -1,5 +1,8 @@
 package com.mikelduke.springsitebuilder.controllers;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.mikelduke.springsitebuilder.model.Page;
 import com.mikelduke.springsitebuilder.model.Post;
 import com.mikelduke.springsitebuilder.repositories.PageRepository;
@@ -13,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.WebContext;
 
 @Controller
 public class PageController {
@@ -22,6 +27,15 @@ public class PageController {
 
 	@Autowired
 	PostRepository postRepository;
+
+	@Autowired
+	TemplateEngine templateEngine;
+	
+	@Autowired
+	HttpServletRequest request;
+
+	@Autowired
+	HttpServletResponse response;
 
 	@GetMapping(value = "/pages")
 	public String getPages(Model model,
@@ -41,10 +55,16 @@ public class PageController {
 	@GetMapping(value = "/pages/{shortname}")
 	public String getPage(Model model,
 			@PathVariable String shortname) {
+		//TODO Create page and post service to handle this
 		Page page = pageRepository.findOneByShortName(shortname).orElseThrow(() -> new ResourceNotFoundException("page not found"));
 		model.addAttribute("page", page);
 
+		WebContext thContext = new WebContext(request, response, request.getServletContext(), request.getLocale());
+
 		Iterable<Post> posts = postRepository.findAllByPage(page);
+		posts.forEach(p -> {
+			p.setContent(templateEngine.process(p.getContent(), thContext));
+		});
 		model.addAttribute("posts", posts);
 		
 		return "page";
