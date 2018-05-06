@@ -13,8 +13,8 @@
 					
 					<div th:each="post : ${posts}">
 						<h2 th:text="${post.title}">Post Title</h2>
-						<p th:text="${post.content}">Post Content</p>
-						<a th:href="@{/posts/{name}(name=${post.shortName})}">Permalink</a>
+						<p th:utext="${post.content}">Post Content</p>
+						<a th:href="@{~/posts/{name}(name=${post.shortName})}">Permalink</a>
 					</div>
 				</div>
 			</div>

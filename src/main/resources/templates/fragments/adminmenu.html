@@ -2,8 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <br />
 <div id="adminmenu" class="menu" th:fragment="adminmenu">
-
-    <nav class="navbar navbar-default">
+    <nav th:if="${!render}" class="navbar navbar-default">
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
@@ -11,6 +10,7 @@
                     <li><a th:href="@{~/menu}">Menu</a></li>
                     <li><a th:href="@{~/pages}">Pages</a></li>
                     <li><a th:href="@{~/posts}">Posts</a></li>
+                    <li><a th:href="@{~/generate}">Generate</a></li>
                 </ul>
             </div>
         </div>

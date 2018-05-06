@@ -46,8 +46,15 @@ public class TestDataGenerator {
 						.title("the first post")
 						.createdAtMs(Instant.now().toEpochMilli()).build();
 
+				Post post2 = Post.builder()
+						.content("post contents!!!!! <br /> second part! <a href='https://google.com'>a link</a>")
+						.shortName("post-2")
+						.title("the second post")
+						.createdAtMs(Instant.now().toEpochMilli()).build();
+
 				List<Post> posts = new ArrayList<>();
 				posts.add(post);
+				posts.add(post2);
 
 				Page page = Page.builder()
 						.desc("page 1 desc")
@@ -59,18 +66,23 @@ public class TestDataGenerator {
 				post.setPage(page);
 				postRepo.save(post);
 
+				post2.setPage(page);
+				postRepo.save(post2);
+
 				MenuItem menuItem = MenuItem.builder()
 						.text("google")
-						.target("www.google.com")
+						.target("https://www.google.com")
 						.position(1)
+						.relative(false)
 						.build();
 
 				menuRepo.save(menuItem);
 
 				MenuItem menuItem2 = MenuItem.builder()
 						.text("slashdot")
-						.target("slashdot.org")
+						.target("https://slashdot.org")
 						.position(2)
+						.relative(false)
 						.build();
 
 				menuRepo.save(menuItem2);
@@ -79,6 +91,7 @@ public class TestDataGenerator {
 						.text(page.getName())
 						.target(page.getLink())
 						.position(3)
+						.relative(true)
 						.build();
 
 				menuRepo.save(menuItem3);

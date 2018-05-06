@@ -36,4 +36,5 @@ public class MenuItem {
 	@NotBlank
 	private String target;
 
+	private boolean relative;
 }
