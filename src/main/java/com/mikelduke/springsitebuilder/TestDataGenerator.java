@@ -96,7 +96,7 @@ public class TestDataGenerator {
 
 				MenuItem menuItem3 = MenuItem.builder()
 						.text(page.getName())
-						.target(page.getLink())
+						.target(page.getShortName())
 						.position(3)
 						.relative(true)
 						.build();

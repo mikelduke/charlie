@@ -38,8 +38,4 @@ public class Page {
 	private String shortName;
 
 	private String desc;
-
-	public String getLink() {
-		return "pages/" + shortName;
-	}
 }

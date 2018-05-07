@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class RootController {
@@ -29,4 +30,16 @@ public class RootController {
 
         return "page";
     }
+
+    @GetMapping(value = "/{shortname}")
+	public String getPage(Model model,
+			@PathVariable String shortname) {
+		Page page = pageService.findOneByShortName(shortname).orElseThrow(() -> new ResourceNotFoundException("page not found"));
+		model.addAttribute("page", page);
+
+		Iterable<Post> posts = postService.renderAllByPage(page);
+		model.addAttribute("posts", posts);
+		
+		return "page";
+	}
 }

@@ -1,5 +1,7 @@
 package com.mikelduke.springsitebuilder.services;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import com.mikelduke.springsitebuilder.model.Page;
@@ -19,6 +21,13 @@ public class PageService {
 
     @Autowired
     PageRepository pageRepository;
+
+    List<String> reservedNames = Arrays.asList(new String[] {
+        "menu",
+        "pages",
+        "posts",
+        "generate"
+    });
     
     public Optional<Page> findOneByShortName(String shortName) {
         return pageRepository.findOneByShortName(shortName);
@@ -37,6 +46,10 @@ public class PageService {
     }
 
     public Page save(Page p) {
+        if (reservedNames.contains(p.getShortName())) {
+            throw new IllegalArgumentException("page shortname is reserved");
+        }
+        
         return pageRepository.save(p);
     }
 
