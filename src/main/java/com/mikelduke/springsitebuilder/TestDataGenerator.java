@@ -6,8 +6,8 @@ import com.mikelduke.springsitebuilder.model.MenuItem;
 import com.mikelduke.springsitebuilder.model.Page;
 import com.mikelduke.springsitebuilder.model.Post;
 import com.mikelduke.springsitebuilder.repositories.MenuItemRepository;
-import com.mikelduke.springsitebuilder.repositories.PostRepository;
 import com.mikelduke.springsitebuilder.services.PageService;
+import com.mikelduke.springsitebuilder.services.PostService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,7 +26,7 @@ public class TestDataGenerator {
 	PageService pageService;
 
 	@Autowired
-	PostRepository postRepo;
+	PostService postService;
 
 	@Autowired
 	MenuItemRepository menuRepo;
@@ -52,7 +52,7 @@ public class TestDataGenerator {
 						.title("the first post")
 						.page(page)
 						.createdAtMs(Instant.now().toEpochMilli()).build();
-				postRepo.save(post);
+				postService.save(post);
 
 				Post post2 = Post.builder()
 						.content("post contents!!!!! <br /> second part! <a href='https://google.com'>a link</a>")
@@ -60,7 +60,7 @@ public class TestDataGenerator {
 						.title("the second post")
 						.page(page)
 						.createdAtMs(Instant.now().toEpochMilli()).build();
-				postRepo.save(post2);
+				postService.save(post2);
 
 				Post post3 = Post.builder()
 						.content("post 3<br /><a th:href='@{http://www.reddit.com}'>test link</a><br /><div th:replace='fragments/menu :: menu'></div>")
@@ -68,7 +68,7 @@ public class TestDataGenerator {
 						.title("the third post testing thymeleaf templates in content")
 						.page(page)
 						.createdAtMs(Instant.now().toEpochMilli()).build();
-				postRepo.save(post3);
+				postService.save(post3);
 
 				Post post4 = Post.builder()
 						.content("* test markdown\n* line two")
@@ -76,7 +76,7 @@ public class TestDataGenerator {
 						.title("markdown post content")
 						.page(page)
 						.createdAtMs(Instant.now().toEpochMilli()).build();
-				postRepo.save(post4);
+				postService.save(post4);
 
 				MenuItem menuItem = MenuItem.builder()
 						.text("google")

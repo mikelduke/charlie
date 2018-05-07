@@ -5,9 +5,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.mikelduke.springsitebuilder.model.Page;
 import com.mikelduke.springsitebuilder.model.Post;
-import com.mikelduke.springsitebuilder.repositories.PostRepository;
 import com.mikelduke.springsitebuilder.services.MarkdownParseService;
 import com.mikelduke.springsitebuilder.services.PageService;
+import com.mikelduke.springsitebuilder.services.PostService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +27,7 @@ public class PageController {
 	PageService pageService;
 
 	@Autowired
-	PostRepository postRepository;
+	PostService postService;
 
 	@Autowired
 	TemplateEngine templateEngine;
@@ -65,7 +65,7 @@ public class PageController {
 
 		WebContext thContext = new WebContext(request, response, request.getServletContext(), request.getLocale());
 
-		Iterable<Post> posts = postRepository.findAllByPage(page);
+		Iterable<Post> posts = postService.findAllByPage(page);
 		posts.forEach(p -> {
 			p.setContent(mdParser.render(p.getContent()));
 			p.setContent(templateEngine.process(p.getContent(), thContext));

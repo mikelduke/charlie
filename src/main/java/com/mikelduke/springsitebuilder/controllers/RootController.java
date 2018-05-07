@@ -2,8 +2,8 @@ package com.mikelduke.springsitebuilder.controllers;
 
 import com.mikelduke.springsitebuilder.model.Page;
 import com.mikelduke.springsitebuilder.model.Post;
-import com.mikelduke.springsitebuilder.repositories.PostRepository;
 import com.mikelduke.springsitebuilder.services.PageService;
+import com.mikelduke.springsitebuilder.services.PostService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,14 +17,14 @@ public class RootController {
     PageService pageService;
 
     @Autowired
-    PostRepository postRepository;
+    PostService postService;
 
     @GetMapping(value = "/")
     public String getRoot(Model model) {
         Page page = pageService.findHomePage();
         model.addAttribute("page", page);
 
-        Iterable<Post> posts = postRepository.findAllByPage(page);
+        Iterable<Post> posts = postService.findAllByPage(page);
         model.addAttribute("posts", posts);
 
         return "page";
