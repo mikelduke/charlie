@@ -5,6 +5,7 @@ import java.util.Optional;
 import com.mikelduke.springsitebuilder.model.Page;
 import com.mikelduke.springsitebuilder.model.Post;
 import com.mikelduke.springsitebuilder.repositories.PostRepository;
+import com.mikelduke.springsitebuilder.services.render.ContentRenderingService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -9,18 +9,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class MarkdownConfiguration {
+public class FlexmarkConfiguration {
 
     @Bean
     public MutableDataSet getOptions() {
         MutableDataSet options = new MutableDataSet();
-
-        // uncomment to set optional extensions
-        // options.set(Parser.EXTENSIONS, Arrays.asList(TablesExtension.create(),
-        // StrikethroughExtension.create()));
-
-        // uncomment to convert soft-breaks to hard breaks
-        // options.set(HtmlRenderer.SOFT_BREAK, "<br />\n");
 
         return options;
     }
@@ -37,9 +30,6 @@ public class MarkdownConfiguration {
                 @Autowired MutableDataSet options, 
                 @Autowired Parser parser) {
         HtmlRenderer renderer = HtmlRenderer.builder(options).build();
-
-        // Node document = parser.parse("This is *Sparta*");
-        // String html = renderer.render(document); // "<p>This is <em>Sparta</em></p>\n"
 
         return renderer;
     }
