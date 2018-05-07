@@ -30,7 +30,7 @@ public class PostService {
 	HttpServletResponse response;
 
 	@Autowired
-	MarkdownParseService mdParser;
+	FlexmarkRenderService flexmarkRenderer;
 
     public Iterable<Post> findAllByPage(Page page) {
         return postRepository.findAllByPage(page);
@@ -51,7 +51,7 @@ public class PostService {
         WebContext thContext = new WebContext(request, response, request.getServletContext(), request.getLocale());
         
         posts.forEach(p -> {
-            p.setContent(mdParser.render(p.getContent()));
+            p.setContent(flexmarkRenderer.render(p.getContent()));
             p.setContent(templateEngine.process(p.getContent(), thContext));
         });
 
@@ -64,12 +64,10 @@ public class PostService {
             Post p = post.get();
             WebContext thContext = new WebContext(request, response, request.getServletContext(), request.getLocale());
 
-            p.setContent(mdParser.render(p.getContent()));
+            p.setContent(flexmarkRenderer.render(p.getContent()));
             p.setContent(templateEngine.process(p.getContent(), thContext));
-
-            return Optional.of(p);
         }
         
-        return Optional.empty();
+        return post;
     }
 }
