@@ -1,4 +1,4 @@
-package com.mikelduke.springsitebuilder;
+package com.mikelduke.springsitebuilder.config;
 
 import com.mikelduke.springsitebuilder.controllers.PageViewHandlerInterceptor;
 

@@ -1,4 +1,4 @@
-package com.mikelduke.springsitebuilder.controllers;
+package com.mikelduke.springsitebuilder.services;
 
 import com.vladsch.flexmark.ast.Node;
 import com.vladsch.flexmark.html.HtmlRenderer;

@@ -7,6 +7,7 @@ import com.mikelduke.springsitebuilder.model.Page;
 import com.mikelduke.springsitebuilder.model.Post;
 import com.mikelduke.springsitebuilder.repositories.PageRepository;
 import com.mikelduke.springsitebuilder.repositories.PostRepository;
+import com.mikelduke.springsitebuilder.services.MarkdownParseService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
