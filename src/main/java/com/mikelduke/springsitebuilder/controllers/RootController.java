@@ -32,24 +32,26 @@ public class RootController {
     }
 
     @GetMapping(value = "/{shortname}")
-	public String getPage(Model model,
-			@PathVariable String shortname) {
-		Page page = pageService.findOneByShortName(shortname).orElseThrow(() -> new ResourceNotFoundException("page not found"));
-		model.addAttribute("page", page);
+    public String getPage(Model model,
+            @PathVariable String shortname) {
+        Page page = pageService.findOneByShortName(shortname)
+                .orElseThrow(() -> new ResourceNotFoundException("page not found"));
+        model.addAttribute("page", page);
 
-		Iterable<Post> posts = postService.renderAllByPage(page);
-		model.addAttribute("posts", posts);
-		
-		return "page";
+        Iterable<Post> posts = postService.renderAllByPage(page);
+        model.addAttribute("posts", posts);
+
+        return "page";
     }
-    
+
     @GetMapping(value = "/{shortname}/{postShortname}")
-	public String getPostForPage(Model model,
-            @PathVariable String shortname,
+    public String getPostForPage(Model model, 
+            @PathVariable String shortname, 
             @PathVariable String postShortname) {
-		Post post = postService.renderOneByShortName(postShortname).orElseThrow(() -> new ResourceNotFoundException("post not found"));
-		model.addAttribute("post", post);
-		
-		return "post";
-	}
+        Post post = postService.renderOneByShortName(postShortname)
+                .orElseThrow(() -> new ResourceNotFoundException("post not found"));
+        model.addAttribute("post", post);
+
+        return "post";
+    }
 }

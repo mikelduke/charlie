@@ -15,30 +15,30 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class PageController {
 
-	@Autowired
-	PageService pageService;
+    @Autowired
+    PageService pageService;
 
-	@Autowired
-	PostService postService;
+    @Autowired
+    PostService postService;
 
-	@GetMapping(value = "/pages")
-	public String getPages(Model model,
-			@RequestParam(name="new", required=false, defaultValue="false") boolean newPage) {
-		if (newPage) {
-			model.addAttribute("newPage", true);
-			return "editPage";
-		}
+    @GetMapping(value = "/pages")
+    public String getPages(Model model,
+            @RequestParam(name = "new", required = false, defaultValue = "false") boolean newPage) {
+        if (newPage) {
+            model.addAttribute("newPage", true);
+            return "editPage";
+        }
 
-		Iterable<Page> pages = pageService.findAll();
-		model.addAttribute("pages", pages);
-		model.addAttribute("pagecount", pageService.count());
-		
-		return "pages";
-	}
+        Iterable<Page> pages = pageService.findAll();
+        model.addAttribute("pages", pages);
+        model.addAttribute("pagecount", pageService.count());
 
-	@PostMapping(value = "/pages")
-	public String newPage(@ModelAttribute("page") Page page) {
-		pageService.save(page);
-		return "redirect:/pages";
-	}
+        return "pages";
+    }
+
+    @PostMapping(value = "/pages")
+    public String newPage(@ModelAttribute("page") Page page) {
+        pageService.save(page);
+        return "redirect:/pages";
+    }
 }

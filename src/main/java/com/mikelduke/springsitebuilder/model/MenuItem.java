@@ -24,17 +24,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MenuItem {
 
-	@Id
-	@GeneratedValue
+    @Id
+    @GeneratedValue
     private long id;
     
     private int position;
 
-	@NotBlank
-	private String text;
+    @NotBlank
+    private String text;
 
-	@NotBlank
-	private String target;
+    @NotBlank
+    private String target;
 
-	private boolean relative;
+    private boolean relative;
 }

@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "pages", uniqueConstraints=
-	@UniqueConstraint(columnNames={"shortName"})
+    @UniqueConstraint(columnNames={"shortName"})
 )
 @Data
 @JsonInclude(Include.NON_NULL)
@@ -27,15 +27,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Page {
 
-	@Id
-	@GeneratedValue
-	private long id;
+    @Id
+    @GeneratedValue
+    private long id;
 
-	@NotBlank
-	private String name;
+    @NotBlank
+    private String name;
 
-	@NotBlank
-	private String shortName;
+    @NotBlank
+    private String shortName;
 
-	private String desc;
+    private String desc;
 }

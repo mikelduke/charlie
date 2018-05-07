@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableAsync
 public class SpringStaticSiteGenerator implements WebMvcConfigurer {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringStaticSiteGenerator.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SpringStaticSiteGenerator.class, args);
+    }
 }

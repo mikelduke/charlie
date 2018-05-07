@@ -11,18 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MenuItemController {
 
-	@Autowired
-	MenuItemRepository menuItemRepository;
+    @Autowired
+    MenuItemRepository menuItemRepository;
 
     @GetMapping(value = "/menuitems")
-	public Iterable<MenuItem> getMenuItems() {
-		return menuItemRepository.findAll();
-	}
+    public Iterable<MenuItem> getMenuItems() {
+        return menuItemRepository.findAll();
+    }
 
-	@GetMapping(value = "/menuitems/{id}")
-	public MenuItem getMenuItem(@PathVariable("id") long id) {
+    @GetMapping(value = "/menuitems/{id}")
+    public MenuItem getMenuItem(@PathVariable("id") long id) {
         return menuItemRepository
                 .findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("menu item not found"));
-	}
+    }
 }

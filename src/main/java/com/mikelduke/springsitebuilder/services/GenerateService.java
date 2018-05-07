@@ -45,8 +45,8 @@ public class GenerateService {
         try (FileOutputStream fos = new FileOutputStream(f)) {
             fos.write(page.getBytes());
         } catch (IOException e) {
-			e.printStackTrace();
-		}
+            e.printStackTrace();
+        }
 
         return "redirect:/";
     }

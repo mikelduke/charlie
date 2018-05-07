@@ -53,9 +53,9 @@ public class PageService {
         return pageRepository.save(p);
     }
 
-	public Page findHomePage() {
+    public Page findHomePage() {
         return pageRepository.findOneByShortName(defaultPage).orElse(
                     pageRepository.findAll(PageRequest.of(0, 1, Sort.Direction.ASC, "id"))
                     .stream().findFirst().orElse(null));
-	}
+    }
 }

@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "posts", uniqueConstraints=
-	@UniqueConstraint(columnNames={"shortName"})
+    @UniqueConstraint(columnNames={"shortName"})
 )
 @Data
 @JsonInclude(Include.NON_NULL)
@@ -29,21 +29,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Post {
 
-	@Id
-	@GeneratedValue
-	private long id;
+    @Id
+    @GeneratedValue
+    private long id;
 
-	@NotBlank
-	private String title;
+    @NotBlank
+    private String title;
 
-	@NotBlank
-	private String shortName;
+    @NotBlank
+    private String shortName;
 
-	private String content;
+    private String content;
 
-	private long createdAtMs;
+    private long createdAtMs;
 
-	@ManyToOne
-	@JoinColumn(name="page_id")
-	private Page page;
+    @ManyToOne
+    @JoinColumn(name="page_id")
+    private Page page;
 }

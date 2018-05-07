@@ -14,15 +14,15 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 @Component
 public class PageViewHandlerInterceptor extends HandlerInterceptorAdapter {
 
-	@Autowired
-	MenuItemRepository menuItemRepository;
+    @Autowired
+    MenuItemRepository menuItemRepository;
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
             ModelAndView modelAndView) throws Exception {
         if (modelAndView != null) {
-            modelAndView.addObject("menuItems", menuItemRepository.findAll(
-                Sort.by(Sort.Direction.ASC, "id")));
+            modelAndView.addObject("menuItems", 
+                    menuItemRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
 
             String render = request.getParameter("render");
             try {
