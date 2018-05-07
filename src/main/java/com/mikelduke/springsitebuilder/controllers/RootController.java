@@ -24,7 +24,7 @@ public class RootController {
         Page page = pageService.findHomePage();
         model.addAttribute("page", page);
 
-        Iterable<Post> posts = postService.findAllByPage(page);
+        Iterable<Post> posts = postService.renderAllByPage(page);
         model.addAttribute("posts", posts);
 
         return "page";

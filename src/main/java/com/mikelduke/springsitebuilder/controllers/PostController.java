@@ -17,7 +17,7 @@ public class PostController {
 
     @GetMapping(value = "/posts/{shortname}")
     public String getPost(Model model, @PathVariable String shortname) {
-        Post post = postService.findOneByShortName(shortname)
+        Post post = postService.renderOneByShortName(shortname)
                 .orElseThrow(() -> new ResourceNotFoundException("page not found"));
         model.addAttribute("post", post);
 
