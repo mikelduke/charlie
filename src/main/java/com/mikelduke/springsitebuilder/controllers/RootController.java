@@ -41,5 +41,15 @@ public class RootController {
 		model.addAttribute("posts", posts);
 		
 		return "page";
+    }
+    
+    @GetMapping(value = "/{shortname}/{postShortname}")
+	public String getPostForPage(Model model,
+            @PathVariable String shortname,
+            @PathVariable String postShortname) {
+		Post post = postService.renderOneByShortName(postShortname).orElseThrow(() -> new ResourceNotFoundException("post not found"));
+		model.addAttribute("post", post);
+		
+		return "post";
 	}
 }
