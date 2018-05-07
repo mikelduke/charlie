@@ -6,8 +6,8 @@ import com.mikelduke.springsitebuilder.model.MenuItem;
 import com.mikelduke.springsitebuilder.model.Page;
 import com.mikelduke.springsitebuilder.model.Post;
 import com.mikelduke.springsitebuilder.repositories.MenuItemRepository;
-import com.mikelduke.springsitebuilder.repositories.PageRepository;
 import com.mikelduke.springsitebuilder.repositories.PostRepository;
+import com.mikelduke.springsitebuilder.services.PageService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,7 +23,7 @@ public class TestDataGenerator {
 	boolean generateTestData;
 
 	@Autowired
-	PageRepository pageRepo;
+	PageService pageService;
 
 	@Autowired
 	PostRepository postRepo;
@@ -44,7 +44,7 @@ public class TestDataGenerator {
 						.shortName("p1")
 						.build();
 						
-				pageRepo.save(page);
+				pageService.save(page);
 
 				Post post = Post.builder()
 						.content("post body")

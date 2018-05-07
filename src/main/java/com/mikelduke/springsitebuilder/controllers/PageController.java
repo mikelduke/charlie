@@ -5,9 +5,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.mikelduke.springsitebuilder.model.Page;
 import com.mikelduke.springsitebuilder.model.Post;
-import com.mikelduke.springsitebuilder.repositories.PageRepository;
 import com.mikelduke.springsitebuilder.repositories.PostRepository;
 import com.mikelduke.springsitebuilder.services.MarkdownParseService;
+import com.mikelduke.springsitebuilder.services.PageService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +24,7 @@ import org.thymeleaf.context.WebContext;
 public class PageController {
 
 	@Autowired
-	PageRepository pageRepository;
+	PageService pageService;
 
 	@Autowired
 	PostRepository postRepository;
@@ -49,9 +49,9 @@ public class PageController {
 			return "editPage";
 		}
 
-		Iterable<Page> pages = pageRepository.findAll();
+		Iterable<Page> pages = pageService.findAll();
 		model.addAttribute("pages", pages);
-		model.addAttribute("pagecount", pageRepository.count());
+		model.addAttribute("pagecount", pageService.count());
 		
 		return "pages";
 	}
@@ -60,7 +60,7 @@ public class PageController {
 	public String getPage(Model model,
 			@PathVariable String shortname) {
 		//TODO Create page and post service to handle this
-		Page page = pageRepository.findOneByShortName(shortname).orElseThrow(() -> new ResourceNotFoundException("page not found"));
+		Page page = pageService.findOneByShortName(shortname).orElseThrow(() -> new ResourceNotFoundException("page not found"));
 		model.addAttribute("page", page);
 
 		WebContext thContext = new WebContext(request, response, request.getServletContext(), request.getLocale());
@@ -77,7 +77,7 @@ public class PageController {
 
 	@PostMapping(value = "/pages")
 	public String newPage(@ModelAttribute("page") Page page) {
-		pageRepository.save(page);
+		pageService.save(page);
 		return "redirect:/pages";
 	}
 }

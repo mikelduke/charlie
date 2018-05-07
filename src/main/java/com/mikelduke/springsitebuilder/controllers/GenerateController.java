@@ -6,7 +6,6 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.mikelduke.springsitebuilder.repositories.PageRepository;
 import com.mikelduke.springsitebuilder.repositories.PostRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +18,6 @@ import org.springframework.web.client.RestTemplate;
 
 @Controller
 public class GenerateController {
-
-    @Autowired
-    PageRepository pageRepository;
 
     @Autowired
     PostRepository postRepository;
