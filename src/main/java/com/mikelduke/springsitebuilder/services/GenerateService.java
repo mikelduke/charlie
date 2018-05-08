@@ -33,6 +33,9 @@ public class GenerateService {
     @Value("${sssg.generate.target-host:http://localhost}")
     String targetHost;
 
+    @Value("${server.servlet.contextPath:''}")
+    String contextPath;
+
     public String generate() {
         //TODO Generate standalone post pages
         //TODO Find relative link solution for files . for same, .. for pages?
@@ -61,7 +64,7 @@ public class GenerateService {
 
     private String getPage(String path) {
         RestTemplate restTemplate = new RestTemplate();
-        String url = targetHost + ":" + port + "/" + path + "?render=true";
+        String url = targetHost + ":" + port + "/" + contextPath + "/" + path + "?render=true";
         System.out.println("url: " + url);
         ResponseEntity<String> res = restTemplate.getForEntity(url, String.class);
 

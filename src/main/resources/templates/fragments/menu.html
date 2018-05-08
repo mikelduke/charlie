@@ -14,8 +14,10 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
+                    <!-- TODO Find solution for relative rendered links -->
                     <li th:each="menuItem: ${menuItems}" th:inline="text">
-                        <a th:href="${menuItem.relative} ? @{~/{target}(target=${menuItem.target})} : @{{target}(target=${menuItem.target})}">
+                        <a th:with="ext=(${render} ? '/index.html' : '')"
+                        th:href="${menuItem.relative} ? @{/{target}{index}(target=${menuItem.target}, index=${ext})} : @{{target}(target=${menuItem.target})}">
                             [[${menuItem.text}]]
                         </a>
                     </li>
