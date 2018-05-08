@@ -16,38 +16,62 @@ public class GenerateService {
     @Autowired
     PostService postService;
 
-    @Value("${sssg.generate.path}")
-    String path;
+    @Value("${sssg.generate.clean:false}")
+    boolean clean;
+
+    @Value("${sssg.generate.path:out}")
+    String outPath;
 
     @Value("${server.port:8080}")
     String port;
 
-    public String generate() {
-        //TODO generate more page
-        RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:" + port + "/?render=true";
-        ResponseEntity<String> res = restTemplate.getForEntity(url, String.class);
-        String page = res.getBody();
-        System.out.println(page);
+    @Value("${sssg.generate.target-host:http://localhost}")
+    String targetHost;
 
-        File dir = new File(path);
-        System.out.println("Path: " + dir.getAbsolutePath());
-        if (!dir.exists()) {
-            if (!dir.mkdirs()) {
-                System.out.println("Error creating path");
-            }
-        }
+    public String generate() {
+        // TODO generate more pages
+        clean();
+
+        String content = generatePage("");
+        File f = new File(outPath, "index.html");
         
-        File f = new File(path, "index.html");
-        if (f.exists()) {
-            f.delete();
-        }
-        try (FileOutputStream fos = new FileOutputStream(f)) {
-            fos.write(page.getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        try {
+			savePage(content, f);
+		} catch (IOException e) {
+			throw new RuntimeException("error saving page", e);
+		}
 
         return "redirect:/";
+    }
+
+    private void clean() {
+        File f = new File(outPath);
+
+        if (clean) {
+            System.out.println("Cleanup out path: " + f.getAbsolutePath());
+            if (f.exists()) {
+                f.delete();
+            }
+        } else {
+            System.out.println("Skipping cleanup of " + f.getAbsolutePath());
+        }
+    }
+
+    private String generatePage(String path) {
+        RestTemplate restTemplate = new RestTemplate();
+        String url = targetHost + ":" + port + "/" + path + "?render=true";
+        System.out.println("url: " + url);
+        ResponseEntity<String> res = restTemplate.getForEntity(url, String.class);
+
+        return res.getBody();
+    }
+
+    private void savePage(String content, File f) throws IOException {
+        f.getParentFile().mkdirs();
+        f.createNewFile();
+        
+        try (FileOutputStream fos = new FileOutputStream(f)) {
+            fos.write(content.getBytes());
+        }
     }
 }
