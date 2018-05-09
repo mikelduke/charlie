@@ -21,16 +21,16 @@ public class GenerateService {
     @Autowired
     PageService pageService;
 
-    @Value("${sssg.generate.clean:false}")
+    @Value("${charlie.generate.clean:false}")
     boolean clean;
 
-    @Value("${sssg.generate.path:out}")
+    @Value("${charlie.generate.path:out}")
     String outPath;
 
     @Value("${server.port:8080}")
     String port;
 
-    @Value("${sssg.generate.target-host:http://localhost}")
+    @Value("${charlie.generate.target-host:http://localhost}")
     String targetHost;
 
     @Value("${server.servlet.contextPath:''}")
@@ -39,6 +39,7 @@ public class GenerateService {
     public String generate() {
         //TODO Generate standalone post pages
         //TODO Find relative link solution for files . for same, .. for pages?
+        long startTime = System.currentTimeMillis();
         clean();
 
         generatePage(null);
@@ -46,6 +47,7 @@ public class GenerateService {
         pageService.findAll().forEach(this::generatePage);
         pageService.findAll().forEach(this::generatePosts);
 
+        System.out.println("Done in " + (System.currentTimeMillis() - startTime) + "ms");
         return "redirect:/";
     }
 

@@ -19,7 +19,7 @@ import org.springframework.core.annotation.Order;
 @Configuration
 public class TestDataGenerator {
 	
-	@Value("${sssg.testdata.generate:false}")
+	@Value("${charlie.testdata.generate:false}")
 	boolean generateTestData;
 
 	@Autowired

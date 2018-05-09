@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PageService {
 
-    @Value("${sssg.homepage.shortname:null}")
+    @Value("${charlie.homepage.shortname:null}")
     String defaultPage;
 
     @Autowired
