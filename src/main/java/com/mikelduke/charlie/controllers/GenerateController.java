@@ -1,11 +1,11 @@
 package com.mikelduke.charlie.controllers;
 
+import com.mikelduke.charlie.services.GenerateService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import com.mikelduke.charlie.services.GenerateService;
 
 @Controller
 public class GenerateController {

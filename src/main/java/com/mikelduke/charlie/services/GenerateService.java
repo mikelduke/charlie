@@ -4,13 +4,17 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+import javax.annotation.PostConstruct;
 
 import com.mikelduke.charlie.model.Page;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 @Service
 public class GenerateService {
@@ -27,14 +31,17 @@ public class GenerateService {
     @Value("${charlie.generate.path:out}")
     String outPath;
 
-    @Value("${server.port:8080}")
-    String port;
+    @Autowired
+	private WebApplicationContext context;
 
-    @Value("${charlie.generate.target-host:http://localhost}")
-    String targetHost;
+	private MockMvc mvc;
 
-    @Value("${server.servlet.contextPath:}")
-    String contextPath;
+	@PostConstruct
+	public void setup() {
+		mvc = MockMvcBuilders
+				.webAppContextSetup(context)
+				.build();
+	}
 
     public String generate() {
         //TODO Find relative link solution for files . for same, .. for pages?
@@ -64,12 +71,22 @@ public class GenerateService {
     }
 
     private String getPage(String path) {
-        RestTemplate restTemplate = new RestTemplate();
-        String url = targetHost + ":" + port + "/" + contextPath + "/" + path + "?render=true";
-        System.out.println("url: " + url);
-        ResponseEntity<String> res = restTemplate.getForEntity(url, String.class);
+        if (path == null || path == "") {
+            path = "/";
+        }
+        if (!path.startsWith("/")) {
+            path = "/" + path;
+        }
+        path = path + "?render=true";
 
-        return res.getBody();
+        try {
+			return mvc.perform(MockMvcRequestBuilders.get(path))
+                    .andReturn()
+                    .getResponse()
+                    .getContentAsString();
+		} catch (Exception e) {
+            throw new RuntimeException("error rendering page", e);
+		}
     }
 
     private void savePage(String content, File f) throws IOException {
