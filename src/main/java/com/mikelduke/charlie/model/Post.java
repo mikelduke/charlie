@@ -1,6 +1,7 @@
 package com.mikelduke.charlie.model;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -39,6 +40,7 @@ public class Post {
     @NotBlank
     private String shortName;
 
+    @Column(length=50000)
     private String content;
 
     private long createdAtMs;

@@ -37,7 +37,6 @@ public class GenerateService {
     String contextPath;
 
     public String generate() {
-        //TODO Generate standalone post pages
         //TODO Find relative link solution for files . for same, .. for pages?
         long startTime = System.currentTimeMillis();
         clean();

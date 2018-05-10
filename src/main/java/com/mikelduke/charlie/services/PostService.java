@@ -19,6 +19,10 @@ public class PostService {
     @Autowired
     ContentRenderingService renderingService;
 
+    public Iterable<Post> findAll() {
+        return postRepository.findAll();
+    }
+
     public Iterable<Post> findAllByPage(Page page) {
         return postRepository.findAllByPage(page);
     }
@@ -46,5 +50,9 @@ public class PostService {
         post.ifPresent(p -> p.setContent(renderingService.render(p.getContent())));
         
         return post;
+    }
+
+    public long count() {
+        return postRepository.count();
     }
 }

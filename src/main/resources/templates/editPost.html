@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" lang="en"/>
+<body>
+<div id="mainContainer" class="flexBoxContainer">
+	<div th:replace="fragments/adminmenu :: adminmenu"></div>
+	<div th:replace="fragments/menu :: menu"></div>
+	<div class="container">
+		<div class="row">
+			<div class="row">
+				<div class="col-lg-8 col-md-7 col-sm-6">
+					<h1 th:text="${newPost == true ? 'New Post' : 'Edit Post'} "></h1>
+					<form id="form" th:action="@{/posts/}" method="post" th:object="${post}">
+						<div id="postForm">
+							<div class="form-group" style="display:none">
+								<label for="id">Id:</label>
+								<input type="text" class="form-control" id="id" th:value="${post?.id}"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Page:</label>
+                                <select class="form-control" id="page" name="page">
+                                    <option th:each="page : ${pages}"
+                                        th:value="${page.id}"
+                                        th:text="${page.shortName + ': ' + page.name}" 
+                                        th:selected="${page?.shortName} == ${selectedPage}">
+                                    </option>
+                                </select>
+								<!-- <input type="text" class="form-control" name="title" id="title" th:value="${post?.title}" /> -->
+							</div>
+							<div class="form-group">
+								<label for="name">Title:</label>
+								<input type="text" class="form-control" name="title" id="title" th:value="${post?.title}" />
+							</div>
+							<div class="form-group">
+								<label for="shortName">Short Name:</label>
+								<input type="text" class="form-control" name="shortName" id="shortName" th:value="${post?.shortName}" />
+							</div>
+							<div class="form-group">
+								<label for="desc">Content:</label>
+								<input type="text" class="form-control" name="content" id="content" th:value="${post?.content}" />
+							</div>
+						</div>
+						<button th:if="${post != null}" type="submit" class="btn btn-primary" id="btn_editPost">Update Post</button>
+                        <button th:if="${post == null}" type="submit" class="btn btn-primary" id="btn_editPost">Add Post</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+</div>
+<!-- <script th:src="@{~/script/member.js}" type="application/javascript"></script> -->
+
+</body>
+</html>
