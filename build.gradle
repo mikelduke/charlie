@@ -37,6 +37,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-mail')
 	
 	compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.16.20'
+
+	compile('com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.9.2')
 	
 	compile 'com.h2database:h2'
 	compile 'mysql:mysql-connector-java'

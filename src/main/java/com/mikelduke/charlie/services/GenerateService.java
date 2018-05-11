@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.util.FileSystemUtils;
 import org.springframework.web.context.WebApplicationContext;
 
 @Service
@@ -62,9 +63,7 @@ public class GenerateService {
 
         if (clean) {
             System.out.println("Cleanup out path: " + f.getAbsolutePath());
-            if (f.exists()) {
-                f.delete();
-            }
+            System.out.println("Deleted: " + FileSystemUtils.deleteRecursively(f));
         } else {
             System.out.println("Skipping cleanup of " + f.getAbsolutePath());
         }
