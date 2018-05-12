@@ -14,6 +14,9 @@ public class ImportService {
     @Value("${charlie.import.path:in}")
     String path;
 
+    @Value("${charlie.import.extension:yaml}")
+    String extension;
+
     @Autowired
     PostService postService;
 

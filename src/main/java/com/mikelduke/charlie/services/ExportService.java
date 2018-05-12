@@ -33,6 +33,9 @@ public class ExportService {
     @Value("${charlie.import.path:in}")
     String outPath;
 
+    @Value("${charlie.import.extension:yaml}")
+    String extension;
+
     @Value("${charlie.export.content-as-separate-doc:true}")
     boolean exportContentAsSeparateDoc;
 
@@ -68,7 +71,7 @@ public class ExportService {
             System.out.println("Saving page " + page.getShortName());
             String output = mapper.writeValueAsString(page);
 
-            File f = new File(outPath + "/" + page.getShortName() + ".yaml");
+            File f = new File(outPath + "/" + page.getShortName() + "." + extension);
             saveToFile(f, output);
 		} catch (IOException e) {
 			throw new RuntimeException("Error saving json", e);
@@ -96,7 +99,7 @@ public class ExportService {
             }
 
             File f = new File(outPath + "/" + post.getPage().getShortName() 
-                    + "/" + post.getShortName() + ".yaml");
+                    + "/" + post.getShortName() + "." + extension);
             saveToFile(f, output);
 		} catch (IOException e) {
 			throw new RuntimeException("Error saving json", e);
@@ -106,7 +109,7 @@ public class ExportService {
     private void exportMenuItems(Iterable<MenuItem> menuItems) {
 		try {
             String content = mapper.writeValueAsString(menuItems);
-            File f = new File(outPath + "/" + "menuItems" + ".yaml");
+            File f = new File(outPath + "/" + "menuItems" + "." + extension);
             saveToFile(f, content);
 		} catch (Exception e) {
 			throw new RuntimeException("Error saving menu items", e);
