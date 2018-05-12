@@ -11,7 +11,7 @@ import com.mikelduke.charlie.services.PostService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -32,8 +32,8 @@ public class TestDataGenerator {
 	MenuItemRepository menuRepo;
 	
 	@Bean
-	@Order(1)
-	public CommandLineRunner generateTestUsers() {
+	@Order(10)
+	public ApplicationRunner generateTestUsers() {
 		return (args) -> {
 			if (generateTestData) {
 				System.out.println("Generating Test Data");
