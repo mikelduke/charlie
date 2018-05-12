@@ -5,8 +5,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mikelduke.charlie.model.MenuItem;
 import com.mikelduke.charlie.model.Page;
 import com.mikelduke.charlie.model.Post;
+import com.mikelduke.charlie.repositories.MenuItemRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,6 +23,9 @@ public class ExportService {
 
     @Autowired
     PageService pageService;
+
+    @Autowired
+    MenuItemRepository menuItemRepository;
 
     @Value("${charlie.export.clean:false}")
     boolean clean;
@@ -40,6 +45,8 @@ public class ExportService {
 
         pageService.findAll().forEach(this::exportPage);
         postService.findAll().forEach(this::exportPost);
+
+        exportMenuItems(menuItemRepository.findAll());
 
         System.out.println("Done in " + (System.currentTimeMillis() - startTime) + "ms");
         return "redirect:/";
@@ -93,6 +100,16 @@ public class ExportService {
             saveToFile(f, output);
 		} catch (IOException e) {
 			throw new RuntimeException("Error saving json", e);
+		}
+    }
+
+    private void exportMenuItems(Iterable<MenuItem> menuItems) {
+		try {
+            String content = mapper.writeValueAsString(menuItems);
+            File f = new File(outPath + "/" + "menuItems" + ".yaml");
+            saveToFile(f, content);
+		} catch (Exception e) {
+			throw new RuntimeException("Error saving menu items", e);
 		}
     }
 
