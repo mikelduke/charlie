@@ -5,7 +5,7 @@ import java.util.Optional;
 import com.mikelduke.charlie.model.Page;
 import com.mikelduke.charlie.model.Post;
 import com.mikelduke.charlie.repositories.PostRepository;
-import com.mikelduke.charlie.services.render.ContentRenderingService;
+import com.mikelduke.charlie.services.render.RenderService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class PostService {
     PostRepository postRepository;
 
     @Autowired
-    ContentRenderingService renderingService;
+    RenderService renderingService;
 
     public Iterable<Post> findAll() {
         return postRepository.findAll();
