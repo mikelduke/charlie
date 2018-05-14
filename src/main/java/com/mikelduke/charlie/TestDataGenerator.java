@@ -1,6 +1,7 @@
 package com.mikelduke.charlie;
 
 import java.time.Instant;
+import java.util.Date;
 
 import com.mikelduke.charlie.model.MenuItem;
 import com.mikelduke.charlie.model.Page;
@@ -51,7 +52,7 @@ public class TestDataGenerator {
 						.shortName("post-1")
 						.title("the first post")
 						.page(page)
-						.createdAtMs(Instant.now().toEpochMilli()).build();
+						.date(Date.from(Instant.now())).build();
 				postService.save(post);
 
 				Post post2 = Post.builder()
@@ -59,7 +60,7 @@ public class TestDataGenerator {
 						.shortName("post-2")
 						.title("the second post")
 						.page(page)
-						.createdAtMs(Instant.now().toEpochMilli()).build();
+						.date(Date.from(Instant.now())).build();
 				postService.save(post2);
 
 				Post post3 = Post.builder()
@@ -67,7 +68,7 @@ public class TestDataGenerator {
 						.shortName("post-3")
 						.title("the third post testing thymeleaf templates in content")
 						.page(page)
-						.createdAtMs(Instant.now().toEpochMilli()).build();
+						.date(Date.from(Instant.now())).build();
 				postService.save(post3);
 
 				Post post4 = Post.builder()
@@ -75,7 +76,7 @@ public class TestDataGenerator {
 						.shortName("post-4")
 						.title("markdown post content")
 						.page(page)
-						.createdAtMs(Instant.now().toEpochMilli()).build();
+						.date(Date.from(Instant.now())).build();
 				postService.save(post4);
 
 				MenuItem menuItem = MenuItem.builder()

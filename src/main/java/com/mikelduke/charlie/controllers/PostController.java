@@ -1,5 +1,8 @@
 package com.mikelduke.charlie.controllers;
 
+import java.time.Instant;
+import java.util.Date;
+
 import com.mikelduke.charlie.model.Post;
 import com.mikelduke.charlie.services.PageService;
 import com.mikelduke.charlie.services.PostService;
@@ -50,7 +53,7 @@ public class PostController {
 
     @PostMapping("/posts")
     public String savePost(@ModelAttribute("post") Post post) {
-        post.setCreatedAtMs(System.currentTimeMillis());
+        post.setDate(Date.from(Instant.now()));
         postService.save(post);
 
         return "redirect:/" + post.getPage().getShortName() + "/" + post.getShortName();

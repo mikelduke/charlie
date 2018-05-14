@@ -1,6 +1,8 @@
 package com.mikelduke.charlie.model;
 
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -51,7 +54,9 @@ public class Post {
     @Column(length=50000)
     private String content;
 
-    private long createdAtMs;
+    @JsonFormat
+      (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+    private Date date;
 
     @ManyToOne
     @JoinColumn(name="page_id")
@@ -64,7 +69,7 @@ public class Post {
         this.layout = post.layout;
         this.author = post.author;
         this.content = post.content;
-        this.createdAtMs = post.createdAtMs;
+        this.date = post.date;
         this.page = post.page;
     }
 }
