@@ -45,6 +45,7 @@ dependencies {
 
 	compile 'com.vladsch.flexmark:flexmark-all:0.32.22'
 	
+	compile "org.springframework.security:spring-security-test"
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 
 	compile group: 'org.webjars', name: 'bootstrap', version: '3.3.7-1'
