@@ -52,6 +52,10 @@ public class RootController {
                 .orElseThrow(() -> new ResourceNotFoundException("post not found"));
         model.addAttribute("post", post);
 
+        if (post.getLayout() != null && !post.getLayout().isEmpty()) {
+            return post.getLayout();
+        }
+        
         return "post";
     }
 }

@@ -79,8 +79,7 @@ public class ExportService {
     }
 
     private void exportPost(Post post) {
-        Post postCopy = new Post(post.getId(), post.getTitle(), 
-                post.getShortName(), post.getContent(), post.getCreatedAtMs(), null);
+        Post postCopy = new Post(post);
         try {
             System.out.println("Saving post: " + post.getPage().getShortName() + "/" + post.getShortName());
             String output = "";

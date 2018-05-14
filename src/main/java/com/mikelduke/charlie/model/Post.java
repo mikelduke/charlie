@@ -40,6 +40,12 @@ public class Post {
     @NotBlank
     private String shortName;
 
+    private String layout;
+
+    private String author;
+
+    //TODO Categories and tags for links?
+
     @Column(length=50000)
     private String content;
 
@@ -48,4 +54,15 @@ public class Post {
     @ManyToOne
     @JoinColumn(name="page_id")
     private Page page;
+
+    public Post(Post post) {
+        this.id = post.id;
+        this.title = post.title;
+        this.shortName = post.shortName;
+        this.layout = post.layout;
+        this.author = post.author;
+        this.content = post.content;
+        this.createdAtMs = post.createdAtMs;
+        this.page = post.page;
+    }
 }
