@@ -29,7 +29,7 @@ public class Page {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
     @NotBlank
     private String name;
@@ -42,4 +42,7 @@ public class Page {
     private String layout = "page";
 
     private String desc;
+
+    @Builder.Default
+    private boolean newestFirst = true;
 }

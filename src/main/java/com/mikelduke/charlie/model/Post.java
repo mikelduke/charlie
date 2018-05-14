@@ -35,7 +35,7 @@ public class Post {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
     @NotBlank
     private String title;
@@ -54,8 +54,7 @@ public class Post {
     @Column(length=50000)
     private String content;
 
-    @JsonFormat
-      (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private Date date;
 
     @ManyToOne

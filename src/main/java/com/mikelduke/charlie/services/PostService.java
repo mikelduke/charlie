@@ -8,6 +8,8 @@ import com.mikelduke.charlie.repositories.PostRepository;
 import com.mikelduke.charlie.services.render.RenderService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -36,7 +38,12 @@ public class PostService {
     }
 
     public Iterable<Post> renderAllByPage(Page page) {
-        Iterable<Post> posts = postRepository.findAllByPage(page);
+        Direction dir = Direction.DESC;
+        if (!page.isNewestFirst()) {
+            dir = Direction.ASC;
+        }
+
+        Iterable<Post> posts = postRepository.findAllByPage(page, Sort.by(dir, "date"));
 
         posts.forEach(p -> {
             p.setContent(renderingService.render(p.getContent()));

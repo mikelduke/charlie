@@ -69,6 +69,7 @@ public class ExportService {
     private void exportPage(Page page) {
         try {
             System.out.println("Saving page " + page.getShortName());
+            page.setId(null);
             String output = mapper.writeValueAsString(page);
 
             File f = new File(outPath + "/" + page.getShortName() + "." + extension);
@@ -80,6 +81,8 @@ public class ExportService {
 
     private void exportPost(Post post) {
         Post postCopy = new Post(post);
+        postCopy.setId(null);
+        postCopy.setPage(null);
         try {
             System.out.println("Saving post: " + post.getPage().getShortName() + "/" + post.getShortName());
             String output = "";
