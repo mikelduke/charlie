@@ -37,5 +37,9 @@ public class Page {
     @NotBlank
     private String shortName;
 
+    @NotBlank
+    @Builder.Default
+    private String layout = "page";
+
     private String desc;
 }

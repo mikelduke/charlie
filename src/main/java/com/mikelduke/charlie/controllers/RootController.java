@@ -28,7 +28,7 @@ public class RootController {
         Iterable<Post> posts = postService.renderAllByPage(page);
         model.addAttribute("posts", posts);
 
-        return "page";
+        return page.getLayout();
     }
 
     @GetMapping(value = "/{shortname}")
@@ -41,7 +41,7 @@ public class RootController {
         Iterable<Post> posts = postService.renderAllByPage(page);
         model.addAttribute("posts", posts);
 
-        return "page";
+        return page.getLayout();
     }
 
     @GetMapping(value = "/{shortname}/{postShortname}")
@@ -52,10 +52,6 @@ public class RootController {
                 .orElseThrow(() -> new ResourceNotFoundException("post not found"));
         model.addAttribute("post", post);
 
-        if (post.getLayout() != null && !post.getLayout().isEmpty()) {
-            return post.getLayout();
-        }
-        
-        return "post";
+        return post.getLayout();
     }
 }

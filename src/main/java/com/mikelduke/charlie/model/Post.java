@@ -40,7 +40,9 @@ public class Post {
     @NotBlank
     private String shortName;
 
-    private String layout;
+    @NotBlank
+    @Builder.Default
+    private String layout = "post";
 
     private String author;
 
