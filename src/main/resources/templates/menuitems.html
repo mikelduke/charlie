@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" lang="en"/>
+<body>
+<div id="mainContainer" class="flexBoxContainer">
+	<div th:replace="fragments/adminmenu :: adminmenu"></div>
+	<div th:replace="fragments/menu :: menu"></div>
+	<div class="container">
+		<div class="row">
+			<div class="row">
+				<div class="col-lg-8 col-md-7 col-sm-6">
+					<table class="table table-striped table-hover">
+						<thead>
+						<tr>
+							<th>Id</th>
+							<th>Position</th>
+                            <th>Text</th>
+                            <th>Target</th>
+                            <th>Delete</th>
+						</tr>
+						</thead>
+						<tbody>
+
+						<tr th:each="menuItem : ${menuItems}">
+                            <td th:id="${menuItem.id}" th:inline="text">[[${menuItem.id}]]</td>
+                            <td th:id="${menuItem.id}" th:inline="text">[[${menuItem.position}]]</td>
+							<td th:id="${menuItem.id}" th:inline="text"><a class="edit-page" th:href="@{/menu/{id}(id=${menuItem.id})}">[[${menuItem.text}]]</a></td>
+                            <td th:id="${menuItem.id}" th:inline="text">[[${menuItem.target}]]</td>
+							<td th:id="${menuItem.id}"><a class="btn btn-danger delete-page">Delete</a></td>
+						</tr>
+						
+						<tr>
+							<td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+							<td>
+								<a class="btn btn-primary new-page" th:href="@{/menu(new=true)}">New</a>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+</div>
+<!-- <script th:src="@{~/script/member.js}" type="application/javascript"></script> -->
+
+</body>
+</html>

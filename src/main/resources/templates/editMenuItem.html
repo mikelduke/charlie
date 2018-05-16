@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" lang="en"/>
+<body>
+<div id="mainContainer" class="flexBoxContainer">
+	<div th:replace="fragments/adminmenu :: adminmenu"></div>
+	<div th:replace="fragments/menu :: menu"></div>
+	<div class="container">
+		<div class="row">
+			<div class="row">
+				<div class="col-lg-8 col-md-7 col-sm-6">
+					<h1 th:text="${newMenuItem == true ? 'New Menu Item' : 'Edit Menu Item'} "></h1>
+					<form id="form" th:action="@{/menu/}" method="post" th:object="${menuItem}">
+						<div id="menuItemForm">
+							<div class="form-group" style="display:none">
+								<label for="id">Id:</label>
+								<input type="text" class="form-control" id="id" th:value="${menuItem?.id}"/>
+							</div>
+							<div class="form-group">
+								<label for="position">Position:</label>
+								<input type="text" class="form-control" name="position" id="position" th:value="${menuItem?.position}" />
+							</div>
+							<div class="form-group">
+								<label for="text">Text:</label>
+								<input type="text" class="form-control" name="text" id="text" th:value="${menuItem?.text}" />
+							</div>
+							<div class="form-group">
+								<label for="target">Target:</label>
+								<input type="text" class="form-control" name="target" id="target" th:value="${menuItem?.target}" />
+                            </div>
+                            <div class="form-group">
+                                    <label for="relative">Relative:</label>
+                                    <input type="text" class="form-control" name="relative" id="relative" th:value="${menuItem?.relative}" />
+                                </div>
+						</div>
+						<button th:if="${menuItem != null}" type="submit" class="btn btn-primary" id="btn_editPage">Update Menu Item</button>
+                        <button th:if="${menuItem == null}" type="submit" class="btn btn-primary" id="btn_editPage">Add Menu Item</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+</div>
+<!-- <script th:src="@{~/script/member.js}" type="application/javascript"></script> -->
+
+</body>
+</html>
