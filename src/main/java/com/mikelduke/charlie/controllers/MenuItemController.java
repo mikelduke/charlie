@@ -45,6 +45,6 @@ public class MenuItemController {
     @PostMapping(value = "/menu")
     public String newPage(@ModelAttribute("menuitem") MenuItem menuItem) {
         menuItemRepository.save(menuItem);
-        return "redirect:/menuitems";
+        return "redirect:/menu";
     }
 }

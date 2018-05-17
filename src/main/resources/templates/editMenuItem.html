@@ -10,7 +10,7 @@
 			<div class="row">
 				<div class="col-lg-8 col-md-7 col-sm-6">
 					<h1 th:text="${newMenuItem == true ? 'New Menu Item' : 'Edit Menu Item'} "></h1>
-					<form id="form" th:action="@{/menu/}" method="post" th:object="${menuItem}">
+					<form id="form" th:action="@{/menu}" method="post" th:object="${menuItem}">
 						<div id="menuItemForm">
 							<div class="form-group" style="display:none">
 								<label for="id">Id:</label>
