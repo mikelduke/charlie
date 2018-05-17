@@ -13,10 +13,11 @@
 					
 					<div th:each="post : ${posts}">
 						<h2 th:text="${post.title}">Post Title</h2>
+						<span th:text="${post.date}"></span>
                         <p th:utext="${post.content}">Post Content</p>
                         <!-- TODO Find solution for relative rendered links -->
                         <a th:with="ext=(${render} ? '/index.html' : '')"
-                        th:href="@{/{page}/{name}{index}(page=${page?.shortName}, name=${post.shortName}, index=${ext})}">Permalink</a>
+                        	th:href="@{/{page}/{name}{index}(page=${page?.shortName}, name=${post.shortName}, index=${ext})}">Permalink</a>
 					</div>
 				</div>
 			</div>
