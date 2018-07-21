@@ -28,10 +28,6 @@
 								<label for="target">Target:</label>
 								<input type="text" class="form-control" name="target" id="target" th:value="${menuItem?.target}" />
                             </div>
-                            <div class="form-group">
-                                    <label for="relative">Relative:</label>
-                                    <input type="text" class="form-control" name="relative" id="relative" th:value="${menuItem?.relative}" />
-                                </div>
 						</div>
 						<button th:if="${menuItem != null}" type="submit" class="btn btn-primary" id="btn_editPage">Update Menu Item</button>
                         <button th:if="${menuItem == null}" type="submit" class="btn btn-primary" id="btn_editPage">Add Menu Item</button>

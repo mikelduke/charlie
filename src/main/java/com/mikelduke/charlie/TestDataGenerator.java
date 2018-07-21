@@ -83,7 +83,6 @@ public class TestDataGenerator {
 						.text("google")
 						.target("https://www.google.com")
 						.position(1)
-						.relative(false)
 						.build();
 				menuRepo.save(menuItem);
 
@@ -91,7 +90,6 @@ public class TestDataGenerator {
 						.text("slashdot")
 						.target("https://slashdot.org")
 						.position(2)
-						.relative(false)
 						.build();
 				menuRepo.save(menuItem2);
 
@@ -99,7 +97,6 @@ public class TestDataGenerator {
 						.text(page.getName())
 						.target(page.getShortName())
 						.position(3)
-						.relative(true)
 						.build();
 				menuRepo.save(menuItem3);
 			}

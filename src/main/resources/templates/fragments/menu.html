@@ -17,7 +17,7 @@
                     <!-- TODO Find solution for relative rendered links -->
                     <li th:each="menuItem: ${menuItems}" th:inline="text">
                         <a th:with="ext=(${render} ? '/index.html' : '')"
-                        th:href="${menuItem.relative} ? @{/{target}{index}(target=${menuItem.target}, index=${ext})} : @{{target}(target=${menuItem.target})}">
+                        th:href="${#strings.startsWith(menuItem.target, 'http')} ? @{{target}(target=${menuItem.target})} : @{/{target}{index}(target=${menuItem.target}, index=${ext})}">
                             [[${menuItem.text}]]
                         </a>
                     </li>
