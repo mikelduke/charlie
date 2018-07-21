@@ -25,10 +25,14 @@ public class RootController {
         Page page = pageService.findHomePage();
         model.addAttribute("page", page);
 
-        Iterable<Post> posts = postService.renderAllByPage(page);
-        model.addAttribute("posts", posts);
+        if (page != null) {
+            Iterable<Post> posts = postService.renderAllByPage(page);
+            model.addAttribute("posts", posts);
+            return page.getLayout();
+        } else {
+            return Page.DEFAULT_LAYOUT;
+        }
 
-        return page.getLayout();
     }
 
     @GetMapping(value = "/{shortname}")

@@ -26,6 +26,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Page {
+    public static final String DEFAULT_LAYOUT = "page";
 
     @Id
     @GeneratedValue
@@ -39,7 +40,7 @@ public class Page {
 
     @NotBlank
     @Builder.Default
-    private String layout = "page";
+    private String layout = DEFAULT_LAYOUT;
 
     private String desc;
 
