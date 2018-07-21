@@ -16,6 +16,7 @@
                             <th>Page</th>
 							<th>Title</th>
 							<th>Short Name</th>
+							<th>Edit</th>
 							<th>Delete</th>
 						</tr>
 						</thead>
@@ -24,7 +25,8 @@
 						<tr th:each="post : ${posts}">
 							<td th:id="${post.id}" th:inline="text"><a th:href="@{/{id}(id=${post.page.shortName})}">[[${post.page.name}]]</a></td>
                             <td th:id="${post.id}" th:inline="text">[[${post.title}]]</td>
-                            <td th:id="${post.id}" th:inline="text"><a th:href="@{/posts/{id}(id=${post.id})}">[[${post.shortName}]]</a></td>
+							<td th:id="${post.id}" th:inline="text"><a th:href="@{/{pageid}/{id}(pageid=${post.page.shortName}, id=${post.shortName})}">[[${post.shortName}]]</a></td>
+							<td th:id="${post.id}" th:inline="text"><a th:href="@{/posts/{id}(id=${post.id})}">Edit</a></td>
 							<td th:id="${post.id}">
 								<form id="deleteForm" th:action="@{/posts/{id}/delete(id=${post.id})}" method="post">
 									<button type="submit" class="btn btn-danger delete-post" id="btn_deletePost">Delete</button>
@@ -33,6 +35,7 @@
 						</tr>
 						
 						<tr>
+							<td></td>
 							<td></td>
 							<td></td>
 							<td>
