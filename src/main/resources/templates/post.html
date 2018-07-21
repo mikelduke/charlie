@@ -12,6 +12,12 @@
                     <div class="col-lg-8 col-md-7 col-sm-6">
                         <h2 th:text="${post?.title}">Post Title</h2>
                         <p th:utext="${post?.content}">Post Content</p>
+                        <div th:if="${!render}">
+                            <a th:href="@{/posts/{id}(id=${post?.id})}">Edit</a>
+                            <form id="deleteForm" th:action="@{/posts/{id}/delete(id=${post.id})}" method="post">
+                                <button type="submit" class="btn btn-danger delete-post" id="btn_deletePost">Delete</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
