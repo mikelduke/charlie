@@ -25,7 +25,11 @@
 							<td th:id="${post.id}" th:inline="text"><a class="edit-post" th:href="@{/{id}(id=${post.page.shortName})}">[[${post.page.name}]]</a></td>
                             <td th:id="${post.id}" th:inline="text">[[${post.title}]]</td>
                             <td th:id="${post.id}" th:inline="text">[[${post.shortName}]]</td>
-							<td th:id="${post.id}"><a class="btn btn-danger delete-page">Delete</a></td>
+							<td th:id="${post.id}">
+								<form id="deleteForm" th:action="@{/posts/{id}/delete(id=${post.id})}" method="post">
+									<button type="submit" class="btn btn-danger delete-post" id="btn_deletePost">Delete</button>
+								</form>
+							</td>
 						</tr>
 						
 						<tr>

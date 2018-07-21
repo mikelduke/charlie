@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -57,5 +58,11 @@ public class PostController {
         postService.save(post);
 
         return "redirect:/" + post.getPage().getShortName() + "/" + post.getShortName();
+    }
+
+    @PostMapping("/posts/{id}/delete")
+    public String deletePost(@PathVariable Long id) {
+        postService.deleteById(id);
+        return "redirect:/posts";
     }
 }
