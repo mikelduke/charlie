@@ -58,4 +58,9 @@ public class PageService {
                     pageRepository.findAll(PageRequest.of(0, 1, Sort.Direction.ASC, "id"))
                     .stream().findFirst().orElse(null));
     }
-}
+
+    public void deletePageByPageShortName(String pageShortName) {
+        findOneByShortName(pageShortName).ifPresent(page -> 
+                pageRepository.deleteById(page.getId()));
+    }
+ }

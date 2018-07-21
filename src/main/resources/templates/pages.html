@@ -23,7 +23,11 @@
 						<tr th:each="page : ${pages}">
 							<td th:id="${page.id}" th:inline="text"><a class="edit-page" th:href="@{/{id}(id=${page.shortName})}">[[${page.name}]]</a></td>
 							<td th:id="${page.id}" th:inline="text">[[${page.shortName}]]</td>
-							<td th:id="${page.id}"><a class="btn btn-danger delete-page">Delete</a></td>
+							<td th:id="${page.id}">
+								<form id="deleteForm" th:action="@{/pages/{id}/delete(id=${page.shortName})}" method="post">
+									<button type="submit" class="btn btn-danger delete-page" id="btn_deletePage">Delete</button>
+								</form>
+							</td>
 						</tr>
 						
 						<tr>

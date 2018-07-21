@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -39,6 +40,12 @@ public class PageController {
     @PostMapping(value = "/pages")
     public String newPage(@ModelAttribute("page") Page page) {
         pageService.save(page);
+        return "redirect:/pages";
+    }
+
+    @PostMapping("/pages/{pageShortName}/delete")
+    public String deletePage(@PathVariable String pageShortName) {
+        pageService.deletePageByPageShortName(pageShortName);
         return "redirect:/pages";
     }
 }
