@@ -43,9 +43,9 @@ public class PageController {
         return "redirect:/pages";
     }
 
-    @PostMapping("/pages/{pageShortName}/delete")
-    public String deletePage(@PathVariable String pageShortName) {
-        pageService.deletePageByPageShortName(pageShortName);
+    @PostMapping("/pages/{id}/delete")
+    public String deletePage(@PathVariable Long id) {
+        pageService.deletePageById(id);
         return "redirect:/pages";
     }
 }

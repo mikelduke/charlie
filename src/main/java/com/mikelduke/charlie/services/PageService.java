@@ -59,8 +59,7 @@ public class PageService {
                     .stream().findFirst().orElse(null));
     }
 
-    public void deletePageByPageShortName(String pageShortName) {
-        findOneByShortName(pageShortName).ifPresent(page -> 
-                pageRepository.deleteById(page.getId()));
+    public void deletePageById(Long id) {
+        pageRepository.deleteById(id);
     }
  }
