@@ -33,6 +33,10 @@ public class PostService {
         return postRepository.findOneByShortName(shortName);
     }
 
+    public Optional<Post> findById(Long id) {
+        return postRepository.findById(id);
+    }
+
     public Post save(Post p) {
         return postRepository.save(p);
     }

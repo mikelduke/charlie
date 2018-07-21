@@ -52,9 +52,19 @@ public class PostController {
         return "posts";
     }
 
+    @GetMapping("/posts/{id}")
+    public String getPost(Model model,
+            @PathVariable Long id) {
+        model.addAttribute("pages", pageService.findAll());
+        model.addAttribute("post", postService.findById(id).orElseThrow(() -> new ResourceNotFoundException()));
+        return "editPost";
+    }
+
     @PostMapping("/posts")
     public String savePost(@ModelAttribute("post") Post post) {
-        post.setDate(Date.from(Instant.now()));
+        if (post.getDate() == null) {
+            post.setDate(Date.from(Instant.now()));
+        }
         postService.save(post);
 
         return "redirect:/" + post.getPage().getShortName() + "/" + post.getShortName();

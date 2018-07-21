@@ -12,10 +12,7 @@
 					<h1 th:text="${newPost == true ? 'New Post' : 'Edit Post'} "></h1>
 					<form id="form" th:action="@{/posts/}" method="post" th:object="${post}">
 						<div id="postForm">
-							<div class="form-group" style="display:none">
-								<label for="id">Id:</label>
-								<input type="text" class="form-control" id="id" th:value="${post?.id}"/>
-                            </div>
+							<input type="hidden" class="form-control" name="id" id="id" th:value="${post?.id}"/>
                             <div class="form-group">
                                 <label for="name">Page:</label>
                                 <select class="form-control" id="page" name="page">
@@ -34,6 +31,10 @@
 							<div class="form-group">
 								<label for="shortName">Short Name:</label>
 								<input type="text" class="form-control" name="shortName" id="shortName" th:value="${post?.shortName}" />
+							</div>
+							<div class="form-group">
+								<label for="date">Date:</label>
+								<input type="text" class="form-control" name="date" id="date" th:value="${post?.date}" />
 							</div>
 							<div class="form-group">
 								<label for="desc">Content:</label>
