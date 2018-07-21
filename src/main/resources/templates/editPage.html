@@ -28,6 +28,10 @@
 								<label for="desc">Description:</label>
 								<input type="text" class="form-control" name="desc" id="desc" th:value="${page?.shortName}" />
 							</div>
+							<div class="form-group">
+								<label for="layout">Layout:</label>
+								<input type="text" class="form-control" name="layout" id="layout" th:value="${page?.layout?:'page'}" />
+							</div>
 						</div>
 						<button th:if="${page != null}" type="submit" class="btn btn-primary" id="btn_editPage">Update Page</button>
                         <button th:if="${page == null}" type="submit" class="btn btn-primary" id="btn_editPage">Add Page</button>
