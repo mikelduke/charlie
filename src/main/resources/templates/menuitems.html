@@ -26,7 +26,11 @@
                             <td th:id="${menuItem.id}" th:inline="text">[[${menuItem.position}]]</td>
 							<td th:id="${menuItem.id}" th:inline="text"><a class="edit-page" th:href="@{/menu/{id}(id=${menuItem.id})}">[[${menuItem.text}]]</a></td>
                             <td th:id="${menuItem.id}" th:inline="text">[[${menuItem.target}]]</td>
-							<td th:id="${menuItem.id}"><a class="btn btn-danger delete-page">Delete</a></td>
+							<td th:id="${menuItem.id}">
+								<form id="deleteForm" th:action="@{/menu/{id}/delete(id=${menuItem.id})}" method="post">
+									<button type="submit" class="btn btn-danger delete-menu-item" id="btn_deleteMenuItem">Delete</button>
+								</form>
+							</td>
 						</tr>
 						
 						<tr>

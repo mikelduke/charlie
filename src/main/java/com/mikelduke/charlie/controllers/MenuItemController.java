@@ -19,7 +19,7 @@ public class MenuItemController {
     MenuItemRepository menuItemRepository;
 
     @GetMapping(value = "/menu")
-    public String getPages(Model model,
+    public String getMenuItems(Model model,
             @RequestParam(name = "new", required = false, defaultValue = "false") boolean newMenuItem) {
         if (newMenuItem) {
             model.addAttribute("newMenuItem", true);
@@ -33,7 +33,7 @@ public class MenuItemController {
     }
 
     @GetMapping(value = "/menu/{id}")
-    public String editPage(Model model,
+    public String editMenuItem(Model model,
             @PathVariable Long id) {
         MenuItem menuItem = menuItemRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("menu item not found"));
@@ -43,8 +43,14 @@ public class MenuItemController {
     }
 
     @PostMapping(value = "/menu")
-    public String newPage(@ModelAttribute("menuitem") MenuItem menuItem) {
+    public String newMenuItem(@ModelAttribute("menuitem") MenuItem menuItem) {
         menuItemRepository.save(menuItem);
+        return "redirect:/menu";
+    }
+
+    @PostMapping("/menu/{id}/delete")
+    public String deleteMenuItem(@PathVariable Long id) {
+        menuItemRepository.deleteById(id);
         return "redirect:/menu";
     }
 }
