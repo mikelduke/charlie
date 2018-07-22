@@ -51,7 +51,7 @@ public class ExportService {
 
         exportMenuItems(menuItemRepository.findAll());
 
-        System.out.println("Done in " + (System.currentTimeMillis() - startTime) + "ms");
+        System.out.println("Export Site in " + (System.currentTimeMillis() - startTime) + "ms");
         return "redirect:/";
     }
 

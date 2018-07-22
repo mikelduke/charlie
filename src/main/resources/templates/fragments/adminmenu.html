@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <br />
-<div th:if="${!render}" id="adminmenu" class="menu" th:fragment="adminmenu">
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <ul class="nav navbar-nav">
-                <li>Edit</li>
-                <li><a th:href="@{/menu}">Menu</a></li>
-                <li><a th:href="@{/pages}">Pages</a></li>
-                <li><a th:href="@{/posts}">Posts</a></li>
-                <li><a th:href="@{/generate}">Generate</a></li>
-                <li><a th:href="@{/export}">Save</a></li>
-                <li><a th:href="@{/import}">Import</a></li>
-            </ul>
+<div th:if="${!render}" th:fragment="adminmenu">
+    <div id="adminmenu" class="menu">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                    <li>Edit</li>
+                    <li><a th:href="@{/menu}">Menu</a></li>
+                    <li><a th:href="@{/pages}">Pages</a></li>
+                    <li><a th:href="@{/posts}">Posts</a></li>
+                    <li><a th:href="@{/generate}">Generate</a></li>
+                    <li><a th:href="@{/export}">Save</a></li>
+                    <li><a th:href="@{/import}">Import</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div id="messages">
+        <div th:each="message : ${@messages.getMessages()}">
+            <p th:text="${message}">Message</p>
         </div>
-    </nav>
+    </div>
 </div>
 </html>
